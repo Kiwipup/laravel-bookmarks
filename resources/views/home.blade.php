@@ -14,7 +14,19 @@
                         </div>
                     @endif
 
-                    You are logged in!
+@foreach (Auth::user()->catalogues as $catalogue)
+
+    <h4>{{ $catalogue->name }}</h4>
+    <ul>
+@foreach ($catalogue->bookmarks as $bookmark)
+        <li><a href="{{ $bookmark->url }}" target=_blank>{{ $bookmark->name ? $bookmark->name : $bookmark->url }}</a></li>
+@endforeach
+    </ul>
+
+@endforeach
+
+
+
                 </div>
             </div>
         </div>
