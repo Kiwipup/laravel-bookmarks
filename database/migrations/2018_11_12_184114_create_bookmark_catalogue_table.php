@@ -15,6 +15,10 @@ class CreateBookmarkCatalogueTable extends Migration
     {
         Schema::create('bookmark_catalogue', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('bookmark_id');
+            $table->foreign('bookmark_id')->references('id')->on('bookmarks');
+            $table->unsignedInteger('catalogue_id');
+            $table->foreign('catalogue_id')->references('id')->on('catalogues');
             $table->timestamps();
         });
     }

@@ -30,7 +30,15 @@ class User extends Authenticatable
 
 
     public function profile() {
-        return $this->hasOne('App\Profile');
+        return $this->hasOne('\App\Profile');
+    }
+
+    public function bookmarks() {
+        return $this->hasMany('\App\Bookmark');
+    }
+
+    public function catalogues() {
+        return $this->hasMany('\App\Catalogue');
     }
 
 }
