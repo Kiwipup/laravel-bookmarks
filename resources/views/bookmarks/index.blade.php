@@ -51,7 +51,7 @@
 
     <div class="row p-2 font-weight-light">
         <div class="col-2 text-nowrap d-flex align-items-center">
-            <i class="text-danger fas fa-edit"></i>
+            <a href="/bookmarks/{{ $b->id }}/edit"><i class="text-danger fas fa-edit"></i></a>
             <form action="/bookmarks/{{ $b->id }}" method="POST">
                 @csrf
                 @method('DELETE')

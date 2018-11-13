@@ -74,7 +74,8 @@ class BookmarkController extends Controller
      */
     public function edit($id)
     {
-        return view('bookmarks.edit');
+        $b = \App\Bookmark::find($id);
+        return view('bookmarks.edit', compact('b'));
     }
 
     /**
@@ -97,8 +98,11 @@ class BookmarkController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        // TODO: intercept delete if this bookmark belongs to catalogues
-
+        $referer = request()->headers->get('referer');
+        $force_delete = false;
+        if ("/edit" == substr($referer, -5)) {
+            $force_delete = true;
+        }
 
         // Find bookmark
         $b = \App\Bookmark::find($id);
@@ -106,14 +110,15 @@ class BookmarkController extends Controller
         // Does it belong to any catalogues?
         $count = $b->catalogues->count();
         if ($count) {
-            $request->session()->flash('status_class', 'danger');
-            $request->session()->flash('status', "This bookmark belongs to $count catalogue" . ($count > 1 ? 's' : '') . " and can't be deleted without confirmation. If you delete from this screen, it will be removed from those catalogues first, then deleted.");
-            return redirect('/bookmarks/' . $b->id . '/edit');
+            if ($force_delete) {
+                $b->catalogues()->detach();
+            }
+            else {
+                $request->session()->flash('status_class', 'danger');
+                $request->session()->flash('status', "This bookmark belongs to $count catalogue" . ($count > 1 ? 's' : '') . " and can't be deleted without confirmation. If you delete from this screen, it will be removed from those catalogues first, then deleted.");
+                return redirect('/bookmarks/' . $b->id . '/edit');
+            }
         }
-
-
-
-
 
         // Delete the bookmark
         $b->delete();
