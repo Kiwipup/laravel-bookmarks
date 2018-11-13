@@ -74,7 +74,7 @@ class BookmarkController extends Controller
      */
     public function edit($id)
     {
-        return "Return a form to change a bookmark";
+        return view('bookmarks.edit');
     }
 
     /**
@@ -95,8 +95,33 @@ class BookmarkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        return "Delete an existing bookmark";
+        // TODO: intercept delete if this bookmark belongs to catalogues
+
+
+        // Find bookmark
+        $b = \App\Bookmark::find($id);
+
+        // Does it belong to any catalogues?
+        $count = $b->catalogues->count();
+        if ($count) {
+            $request->session()->flash('status_class', 'danger');
+            $request->session()->flash('status', "This bookmark belongs to $count catalogue" . ($count > 1 ? 's' : '') . " and can't be deleted without confirmation. If you delete from this screen, it will be removed from those catalogues first, then deleted.");
+            return redirect('/bookmarks/' . $b->id . '/edit');
+        }
+
+
+
+
+
+        // Delete the bookmark
+        $b->delete();
+
+        // messaging
+        $request->session()->flash('status', 'Bookmark deleted!');
+
+        // redirect
+        return redirect()->route('bookmarks.index');
     }
 }

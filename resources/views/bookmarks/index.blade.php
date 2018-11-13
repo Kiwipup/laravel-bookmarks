@@ -1,18 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.card')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">My Bookmarks</div>
+@section('card-header')
+    My Bookmarks
+@endsection
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@section('card-content')
 
 <p><a href="#">Add Bookmark</a></p>
 
@@ -46,22 +38,10 @@
 
     </ul>
 
-
-
-
-
-
-
-
-    <button type="submit" class="btn btn-success float-right">Add Bookmark</button>
+    <button type="submit" class="btn btn-warning float-right">Add Bookmark</button>
 </form>
 
-
-
-
-
 <div class="">
-
     <div class="row p-2 border-bottom font-weight-bold">
         <div class="col-2 d-flex align-items-end">Actions</div>
         <div class="col-10">Alias<br>URL</div>
@@ -71,7 +51,12 @@
 
     <div class="row p-2 font-weight-light">
         <div class="col-2 text-nowrap d-flex align-items-center">
-            <i class="text-primary fas fa-edit"></i><i class="ml-2 text-danger fas fa-trash-alt"></i>
+            <i class="text-danger fas fa-edit"></i>
+            <form action="/bookmarks/{{ $b->id }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn" type="submit"><i class="text-danger fas fa-trash-alt"></i></button>
+            </form>
         </div>
         <div class="col-10 text-truncate">
             {!! $b->name ? $b->name : '<span class="text-black-50">(no name)</span>' !!}<br />
@@ -83,10 +68,4 @@
 
 </div>
 
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
