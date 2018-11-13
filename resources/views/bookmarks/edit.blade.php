@@ -28,7 +28,7 @@
 
         <li>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="catalogue_check_{{ $c->id }}" id="catalogue_check_{{ $c->id }}">
+              <input class="form-check-input" type="checkbox" name="catalogue_check_{{ $c->id }}" id="catalogue_check_{{ $c->id }}" {{ in_array($c->id, $b->catalogue_ids) ? 'checked' : ''}}>
               <label class="form-check-label" for="catalogue_check_{{ $c->id }}">{{ $c->name }}</label>
             </div>
         </li>

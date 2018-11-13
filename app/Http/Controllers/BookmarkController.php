@@ -75,6 +75,11 @@ class BookmarkController extends Controller
     public function edit($id)
     {
         $b = \App\Bookmark::find($id);
+        $temp = [];
+        foreach ($b->catalogues as $c) {
+            array_push($temp, $c->id);
+        }
+        $b->catalogue_ids = $temp;
         return view('bookmarks.edit', compact('b'));
     }
 
