@@ -38,7 +38,7 @@ class User extends Authenticatable
     }
 
     public function catalogues() {
-        return $this->hasMany('\App\Catalogue');
+        return $this->hasMany('\App\Catalogue')->orderBy('name');
     }
 
 }

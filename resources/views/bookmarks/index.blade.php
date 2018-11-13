@@ -14,6 +14,8 @@
                         </div>
                     @endif
 
+<p><a href="#">Add Bookmark</a></p>
+
 <form class="form clearfix pb-3" action="" method="post">
     @csrf
     <div class="form-group">
@@ -28,6 +30,29 @@
         <label for="new_description" class="font-weight-bold">Description</label>
         <textarea class="form-control" name="new_description" id="new_description" placeholder="Description..."></textarea>
     </div>
+
+    <ul class="list-unstyled">
+
+@foreach (Auth::user()->catalogues as $c)
+
+        <li>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="catalogue_check_{{ $c->id }}" id="catalogue_check_{{ $c->id }}">
+              <label class="form-check-label" for="catalogue_check_{{ $c->id }}">{{ $c->name }}</label>
+            </div>
+        </li>
+
+@endforeach
+
+    </ul>
+
+
+
+
+
+
+
+
     <button type="submit" class="btn btn-success float-right">Add Bookmark</button>
 </form>
 

@@ -42,6 +42,12 @@ class BookmarkController extends Controller
         $b->description = $request->input('new_description');
         $b->save();
 
+        // Handle catalogue checkboxes
+        foreach (preg_grep('/^catalogue_check_\d+/', array_keys($request->all())) as $check) {
+            $id = intval(substr($check, 16));
+            $b->catalogues()->attach($id);
+        }
+
         // messaging
         $request->session()->flash('status', 'New bookmark added!');
 
