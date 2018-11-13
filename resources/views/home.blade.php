@@ -14,6 +14,10 @@
                         </div>
                     @endif
 
+<!-- TODO: Add place for uncatalogued bookmarks -->
+
+<!-- TODO: Add messaging if there are no bookmarks -->
+
 @foreach (Auth::user()->catalogues as $catalogue)
 
     <h4>{{ $catalogue->name }}</h4>

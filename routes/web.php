@@ -22,6 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@edit')->middleware('auth');
 Route::put('/profile', 'ProfileController@update')->middleware('auth');
 
-Route::resource('/bookmark', 'BookmarkController')->middleware('auth');
+Route::resource('/bookmarks', 'BookmarkController')->middleware('auth');
 
-Route::resource('/catalogue', 'CatalogueController')->middleware('auth');
+Route::resource('/catalogues', 'CatalogueController')->middleware('auth');

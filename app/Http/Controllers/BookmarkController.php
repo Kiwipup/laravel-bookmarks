@@ -13,7 +13,7 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        //
+        return view('bookmarks.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class BookmarkController extends Controller
      */
     public function create()
     {
-        //
+        return "Provide a form for creating a new bookmark";
     }
 
     /**
@@ -34,7 +34,7 @@ class BookmarkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "Save a new bookmark";
     }
 
     /**
@@ -45,7 +45,7 @@ class BookmarkController extends Controller
      */
     public function show($id)
     {
-        //
+        return "Display a bookmark in a non-editable way";
     }
 
     /**
@@ -56,7 +56,7 @@ class BookmarkController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "Return a form to change a bookmark";
     }
 
     /**
@@ -68,7 +68,7 @@ class BookmarkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return "Save an updated bookmark";
     }
 
     /**
@@ -79,6 +79,6 @@ class BookmarkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "Delete an existing bookmark";
     }
 }
