@@ -34,7 +34,19 @@ class BookmarkController extends Controller
      */
     public function store(Request $request)
     {
-        return "Save a new bookmark";
+        // Create the new bookmark
+        $b = new \App\Bookmark;
+        $b->user_id = \Auth::id();
+        $b->url = $request->input('new_url');
+        $b->name = $request->input('new_name');
+        $b->description = $request->input('new_description');
+        $b->save();
+
+        // messaging
+        $request->session()->flash('status', 'New bookmark added!');
+
+        // redirect
+        return redirect()->route('bookmarks.index');
     }
 
     /**

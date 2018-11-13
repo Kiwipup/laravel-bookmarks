@@ -34,7 +34,7 @@ class User extends Authenticatable
     }
 
     public function bookmarks() {
-        return $this->hasMany('\App\Bookmark');
+        return $this->hasMany('\App\Bookmark')->orderBy('name');
     }
 
     public function catalogues() {
