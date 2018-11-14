@@ -13,7 +13,7 @@ class CatalogueController extends Controller
      */
     public function index()
     {
-        //
+        return "This is the catalogue index";
     }
 
     /**
@@ -23,7 +23,7 @@ class CatalogueController extends Controller
      */
     public function create()
     {
-        //
+        return "Display a form for creating a new catalogue";
     }
 
     /**
@@ -34,7 +34,7 @@ class CatalogueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "Save a new catalogue";
     }
 
     /**
@@ -45,7 +45,7 @@ class CatalogueController extends Controller
      */
     public function show($id)
     {
-        //
+        return "Display a catalogue, but not for editing";
     }
 
     /**
@@ -56,7 +56,7 @@ class CatalogueController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "Return an edit form populated with a particular catalogue";
     }
 
     /**
@@ -68,7 +68,7 @@ class CatalogueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return "Save changes to an existing catalogue";
     }
 
     /**
@@ -79,6 +79,6 @@ class CatalogueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "Delete a catalogue!";
     }
 }

@@ -23,8 +23,8 @@
     </div>
 
     <div>
-        <a href="{{ url('/home') }}" class="float-left btn btn-danger">Cancel</a>
-        <button type="submit" class="float-right btn btn-primary">Save Profile</button>
+        <button type="submit" class="ml-2 float-right btn btn-warning">Save</button>
+        <a href="{{ url('/home') }}" class="float-right btn btn-secondary">Cancel</a>
     </div>
 
 </form>
