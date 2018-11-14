@@ -37,6 +37,10 @@ class User extends Authenticatable
         return $this->hasMany('\App\Bookmark')->orderBy('name');
     }
 
+    public function uncatalogued_bookmarks() {
+        return $this->bookmarks()->doesntHave('catalogues')->orderBy('name');
+    }
+
     public function catalogues() {
         return $this->hasMany('\App\Catalogue')->orderBy('name');
     }

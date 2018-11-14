@@ -13,7 +13,7 @@ class CatalogueController extends Controller
      */
     public function index()
     {
-        return "This is the catalogue index";
+        return view('catalogues.index');
     }
 
     /**
@@ -34,7 +34,42 @@ class CatalogueController extends Controller
      */
     public function store(Request $request)
     {
-        return "Save a new catalogue";
+        // Create the new catalogue
+        $c = new \App\Catalogue;
+        $c->user_id = \Auth::id();
+        $c->name = $request->input('new_name');
+        $c->description = $request->input('new_description');
+        $c->save();
+
+        // Do we have a new bookmark?
+        if ($request->input('bookmark_check_new') && $request->input('new_bookmark_url') != null) {
+
+            // Create the new bookmark
+            $b = new \App\Bookmark;
+            $b->user_id = \Auth::id();
+            $b->url = $request->input('new_bookmark_url');
+            $b->save();
+
+            // TODO: We should check that the catalogue was created successfully!
+
+            // Attach it to this catalogue
+            $c->bookmarks()->attach($b->id);
+        }
+
+        // Handle bookmark checkboxes
+        foreach (preg_grep('/^bookmark_check_\d+/', array_keys($request->all())) as $check) {
+            $id = intval(substr($check, 15));
+            $c->bookmarks()->attach($id);
+        }
+
+        // messaging
+        $request->session()->flash('status', 'New catalogue created!');
+
+        // redirect
+        return redirect()->route('catalogues.index');
+
+
+
     }
 
     /**
@@ -56,7 +91,13 @@ class CatalogueController extends Controller
      */
     public function edit($id)
     {
-        return "Return an edit form populated with a particular catalogue";
+        $c = \App\Catalogue::find($id);
+        $temp = [];
+        foreach ($c->bookmarks as $b) {
+            array_push($temp, $b->id);
+        }
+        $c->bookmark_ids = $temp;
+        return view('catalogues.edit', compact('c'));
     }
 
     /**
