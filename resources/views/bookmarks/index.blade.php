@@ -51,10 +51,20 @@
 </form>
 
 <div class="">
+
     <div class="row p-2 border-bottom font-weight-bold">
         <div class="col-2 d-flex align-items-end">Actions</div>
         <div class="col-10">Alias<br>URL</div>
     </div>
+
+    @if (Auth::user()->bookmarks->count() == 0)
+
+        <div class="text-center p-2 font-weight-light">
+            <p class="pt-4">You don't have any bookmarks yet.</p>
+            <p class="">Create one by clicking "New Bookmark" above.</p>
+        </div>
+
+    @endif
 
 @foreach (Auth::user()->bookmarks as $b)
 

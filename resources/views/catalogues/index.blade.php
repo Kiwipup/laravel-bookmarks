@@ -52,6 +52,15 @@
         <div class="col-10">Name</div>
     </div>
 
+@if (Auth::user()->catalogues->count() == 0)
+
+    <div class="text-center p-2 font-weight-light">
+        <p class="pt-4">You don't have any catalogues yet.</p>
+        <p class="">Create one by clicking "New Catalogue" above.</p>
+    </div>
+
+@endif
+
 @foreach (Auth::user()->catalogues as $c)
 
     <div class="row p-2 font-weight-light">
