@@ -6,9 +6,9 @@
 
 @section('card-content')
 
-<p><a href="#">Add Bookmark</a></p>
+<p><a data-toggle="collapse" href="#addForm">New Bookmark</a></p>
 
-<form class="form clearfix pb-3" action="" method="post">
+<form id="addForm" class="collapse form clearfix pb-3" action="" method="post">
     @csrf
     <div class="form-group">
         <label for="new_url" class="font-weight-bold">URL</label>
@@ -38,7 +38,7 @@
 
     </ul>
 
-    <button type="submit" class="btn btn-warning float-right">Add Bookmark</button>
+    <button type="submit" class="btn btn-warning float-right">Add</button>
 </form>
 
 <div class="">

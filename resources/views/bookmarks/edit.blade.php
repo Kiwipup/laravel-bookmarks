@@ -2,6 +2,13 @@
 
 @section('card-header')
     Edit a Bookmark
+
+    <form class="form float-right" action="/bookmarks/{{ $b->id }}" method="POST">
+        @csrf
+        @method("DELETE")
+        <button class="btn btn-sm bg-transparent" type="submit"><i class="text-danger fas fa-trash-alt"></i></button>
+    </form>
+
 @endsection
 
 @section('card-content')
@@ -36,14 +43,8 @@
 @endforeach
 
     </ul>
-    <a href="/bookmarks" class="btn btn-secondary">Cancel</a>
-    <button type="submit" class="btn btn-warning float-right">Update</button>
-</form>
-
-<form class="form" action="/bookmarks/{{ $b->id }}" method="POST">
-    @csrf
-    @method("DELETE")
-    <button type="submit" class="btn btn-danger">Remove from Catalogues & Delete</button>
+    <button type="submit" class="ml-2 btn btn-warning float-right">Update</button>
+    <a href="/bookmarks" class="btn btn-secondary float-right">Cancel</a>
 </form>
 
 @endsection
