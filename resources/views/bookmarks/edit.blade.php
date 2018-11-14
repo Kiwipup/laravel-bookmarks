@@ -45,21 +45,16 @@
         <li>
             <div class="form-check d-flex align-items-center">
                 <input class="form-check-input" type="checkbox" name="catalogue_check_new" id="catalogue_check_new">
-                <label class="form-check-label" for="catalogue_check_new"><input class="mt-2 form-control" type="text" placeholder="Enter a new catalogue"></label>
+                <label class="form-check-label" for="catalogue_check_new">
+                    <input oninput="check_checkbox('catalogue_check_new', 'new_catalogue_name')"  name="new_catalogue_name" id="new_catalogue_name" class="mt-2 form-control" type="text" placeholder="Enter a new catalogue">
+                </label>
             </div>
         </li>
-
-
-<script>
-    alert("hello from the script in the blade template!");
-</script>
-
-
-
 
     </ul>
     <button type="submit" class="ml-2 btn btn-warning float-right">Update</button>
     <a href="/bookmarks" class="btn btn-secondary float-right">Cancel</a>
 </form>
+
 
 @endsection

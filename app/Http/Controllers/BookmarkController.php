@@ -42,6 +42,21 @@ class BookmarkController extends Controller
         $b->description = $request->input('new_description');
         $b->save();
 
+        // Do we have a new catalogue?
+        if ($request->input('catalogue_check_new') && $request->input('new_catalogue_name') != null) {
+
+            // Create the new catalogue
+            $c = new \App\Catalogue;
+            $c->user_id = \Auth::id();
+            $c->name = $request->input('new_catalogue_name');
+            $c->save();
+
+            // TODO: We should check that the catalogue was created successfully!
+
+            // Attach it to this bookmark
+            $b->catalogues()->attach($c->id);
+        }
+
         // Handle catalogue checkboxes
         foreach (preg_grep('/^catalogue_check_\d+/', array_keys($request->all())) as $check) {
             $id = intval(substr($check, 16));
@@ -101,6 +116,21 @@ class BookmarkController extends Controller
 
         // Remove old catalogue associations
         $b->catalogues()->detach();
+
+        // Do we have a new catalogue?
+        if ($request->input('catalogue_check_new') && $request->input('new_catalogue_name') != null) {
+
+            // Create the new catalogue
+            $c = new \App\Catalogue;
+            $c->user_id = \Auth::id();
+            $c->name = $request->input('new_catalogue_name');
+            $c->save();
+
+            // TODO: We should check that the catalogue was created successfully!
+
+            // Attach it to this bookmark
+            $b->catalogues()->attach($c->id);
+        }
 
         // Handle catalogue checkboxes
         foreach (preg_grep('/^catalogue_check_\d+/', array_keys($request->all())) as $check) {

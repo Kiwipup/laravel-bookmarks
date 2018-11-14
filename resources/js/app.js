@@ -34,3 +34,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+window.check_checkbox = function(checkbox_id, input_id) {
+    let checkbox = document.getElementById(checkbox_id);
+    let input = document.getElementById(input_id);
+    if (input.value) {
+        checkbox.setAttribute('checked', 'on');
+    }
+    else {
+        checkbox.removeAttribute('checked');
+    }
+}
