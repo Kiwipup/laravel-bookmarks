@@ -92,7 +92,28 @@ class BookmarkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "Save an updated bookmark";
+        // Find the existing bookmark
+        $b = \App\Bookmark::find($id);
+        $b->url = $request->input('new_url');
+        $b->name = $request->input('new_name');
+        $b->description = $request->input('new_description');
+        $b->save();
+
+        // Remove old catalogue associations
+        $b->catalogues()->detach();
+
+        // Handle catalogue checkboxes
+        foreach (preg_grep('/^catalogue_check_\d+/', array_keys($request->all())) as $check) {
+            $id = intval(substr($check, 16));
+            $b->catalogues()->attach($id);
+        }
+
+        // messaging
+        $request->session()->flash('status', 'Bookmark updated!');
+
+        // redirect
+        return redirect()->route('bookmarks.index');
+
     }
 
     /**
