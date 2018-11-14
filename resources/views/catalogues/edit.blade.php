@@ -42,7 +42,7 @@
             <div class="form-check d-flex align-items-center">
                 <input class="form-check-input" type="checkbox" name="bookmark_check_new" id="bookmark_check_new">
                 <label class="form-check-label" for="bookmark_check_new">
-                    <input oninput="('bookmark_check_new', 'new_bookmark_url')"  name="new_bookmark_url" id="new_bookmark_url" class="mt-2 form-control" type="text" placeholder="New URL...">
+                    <input oninput="check_checkbox('bookmark_check_new', 'new_bookmark_url')"  name="new_bookmark_url" id="new_bookmark_url" class="mt-2 form-control" type="text" placeholder="New URL...">
                 </label>
             </div>
         </li>
