@@ -12,15 +12,15 @@
     @csrf
     <div class="form-group">
         <label for="new_url" class="font-weight-bold">URL</label>
-        <input type="text" class="form-control" id="new_url" name="new_url" placeholder="Bookmark URL...">
+        <input type="text" class="form-control" id="new_url" name="new_url" placeholder="Bookmark URL..." value="{{ old('new_url') }}">
     </div>
     <div class="form-group">
         <label for="new_name" class="font-weight-bold">Bookmark Alias</label>
-        <input type="text" class="form-control" id="new_name" name="new_name" placeholder="Bookmark alias...">
+        <input type="text" class="form-control" id="new_name" name="new_name" placeholder="Bookmark alias..." value="{{ old('new_name') }}">
     </div>
     <div class="form-group">
         <label for="new_description" class="font-weight-bold">Description</label>
-        <textarea class="form-control" name="new_description" id="new_description" placeholder="Description..."></textarea>
+        <textarea class="form-control" name="new_description" id="new_description" placeholder="Description...">{{ old('new_description') }}</textarea>
     </div>
 
     <ul class="list-unstyled">

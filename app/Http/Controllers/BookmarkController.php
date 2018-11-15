@@ -34,6 +34,11 @@ class BookmarkController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'new_url' => 'required|max:25|url',
+            'new_name' => 'max:100',
+        ]);
+
         // Create the new bookmark
         $b = new \App\Bookmark;
         $b->user_id = \Auth::id();
