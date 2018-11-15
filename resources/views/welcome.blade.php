@@ -7,7 +7,11 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css"> -->
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 
         <!-- Styles -->
         <style>
@@ -45,7 +49,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 64px;
             }
 
             .links > a {
@@ -63,36 +67,46 @@
             }
         </style>
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+    <body class="pretty bg-light">
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-8">
+
+                <h1 class="pt-5 pb-4 text-danger">
+                    Laravel Bookmarks
+                </h1>
+
+                <h5 class="pb-4">
+                    This website helps you manage groups of URLs by saving bookmarks and organizing them into catalogues.
+                </h5>
+
+                <h5 class="pb-4">
+                    Have a bunch of recipes you refer to frequently? Create a "Recipe Box" catalogue. Have a bunch of cat photos
+                    you look at all day? Create a "cat-a-logue"! Need help keeping up with all your memes? Create a "Meme-or-ies"
+                    catalogue. The only limit is your tolerance for puns!
+                </h5>
+
+                <h5>Click the "Register" button below to get started, or "Login" if you're a returning user.</h5>
+
+                <div class="pt-4">
+                    <a href="/login" class="btn btn-danger pl-4 pr-4 pt-2 pb-2">Login</a>
+                    <span class="pl-5"></span>
+                    <a href="/register" class="btn btn-danger pl-4 pr-4 pt-2 pb-2">Register</a>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
             </div>
+
+
+            <div class="col-4">
+            </div>
+
         </div>
+
+
+            </div>
+        <!-- </div> -->
     </body>
 </html>

@@ -34,6 +34,10 @@ class CatalogueController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'new_name' => 'max:100',
+        ]);
+
         // Create the new catalogue
         $c = new \App\Catalogue;
         $c->user_id = \Auth::id();
@@ -107,6 +111,10 @@ class CatalogueController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'new_name' => 'max:100',
+        ]);
+
         // Create the new catalogue
         $c = \App\Catalogue::find($id);
         $c->name = $request->input('new_name');

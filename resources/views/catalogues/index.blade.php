@@ -8,15 +8,15 @@
 
 <p><a data-toggle="collapse" href="#addForm">New Catalogue</a></p>
 
-<form id="addForm" class="collapse form clearfix pb-3" action="" method="post">
+<form id="addForm" class="collapse form clearfix pb-3 {{ $errors->any() ? 'show' : '' }}" action="" method="post">
     @csrf
     <div class="form-group">
         <label for="new_name" class="font-weight-bold">Name</label>
-        <input type="text" class="form-control" id="new_name" name="new_name" placeholder="Name...">
+        <input type="text" class="form-control" id="new_name" name="new_name" placeholder="Name..." value="{{ old('new_name') }}>
     </div>
     <div class="form-group">
         <label for="new_description" class="font-weight-bold">Description</label>
-        <textarea class="form-control" name="new_description" id="new_description" placeholder="Description..."></textarea>
+        <textarea class="form-control" name="new_description" id="new_description" placeholder="Description...">{{ old('new_description') }}</textarea>
     </div>
 
     <ul class="list-unstyled">
@@ -25,7 +25,7 @@
 
         <li>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="bookmark_check_{{ $b->id }}" id="bookmark_check_{{ $b->id }}">
+              <input class="form-check-input" type="checkbox" name="bookmark_check_{{ $b->id }}" id="bookmark_check_{{ $b->id }}" {{ old('bookmark_check_' . $b->id) ? 'checked' : '' }>
               <label class="form-check-label" for="bookmark_check_{{ $b->id }}">{{ $b->name ? $b->name : $b->url }}</label>
             </div>
         </li>

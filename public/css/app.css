@@ -10477,3 +10477,11 @@ h4 > a {
   text-decoration: none !important;
 }
 
+body.pretty {
+  background-image: url("/images/532782.jpg");
+  height: 100%;
+  background-position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
