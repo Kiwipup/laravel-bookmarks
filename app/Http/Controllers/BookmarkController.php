@@ -35,7 +35,7 @@ class BookmarkController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'new_url' => 'required|max:25|url',
+            'new_url' => 'required|max:250|url',
             'new_name' => 'max:100',
         ]);
 

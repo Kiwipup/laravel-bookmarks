@@ -8,7 +8,7 @@
 
 <p><a data-toggle="collapse" href="#addForm">New Bookmark</a></p>
 
-<form id="addForm" class="collapse form clearfix pb-3" action="" method="post">
+<form id="addForm" class="collapse form clearfix pb-3 {{ $errors->any() ? 'show' : '' }}" action="" method="post">
     @csrf
     <div class="form-group">
         <label for="new_url" class="font-weight-bold">URL</label>
@@ -29,7 +29,7 @@
 
         <li>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="catalogue_check_{{ $c->id }}" id="catalogue_check_{{ $c->id }}">
+              <input class="form-check-input" type="checkbox" name="catalogue_check_{{ $c->id }}" id="catalogue_check_{{ $c->id }}" {{ old('catalogue_check_' . $c->id) ? 'checked' : '' }}>
               <label class="form-check-label" for="catalogue_check_{{ $c->id }}">{{ $c->name }}</label>
             </div>
         </li>
@@ -38,9 +38,9 @@
 
         <li>
             <div class="form-check d-flex align-items-center">
-                <input class="form-check-input" type="checkbox" name="catalogue_check_new" id="catalogue_check_new">
+                <input class="form-check-input" type="checkbox" name="catalogue_check_new" id="catalogue_check_new" {{ old('catalogue_check_new') ? 'checked' : '' }}>
                 <label class="form-check-label" for="catalogue_check_new">
-                    <input oninput="check_checkbox('catalogue_check_new', 'new_catalogue_name')"  name="new_catalogue_name" id="new_catalogue_name" class="mt-2 form-control" type="text" placeholder="Enter a new catalogue">
+                    <input oninput="check_checkbox('catalogue_check_new', 'new_catalogue_name')"  value="{{ old('new_catalogue_name') }}" name="new_catalogue_name" id="new_catalogue_name" class="mt-2 form-control" type="text" placeholder="Enter a new catalogue">
                 </label>
             </div>
         </li>
