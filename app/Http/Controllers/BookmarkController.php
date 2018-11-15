@@ -112,6 +112,11 @@ class BookmarkController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'new_url' => 'required|max:250|url',
+            'new_name' => 'max:100',
+        ]);
+        
         // Find the existing bookmark
         $b = \App\Bookmark::find($id);
         $b->url = $request->input('new_url');
