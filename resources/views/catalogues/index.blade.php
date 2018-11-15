@@ -12,7 +12,7 @@
     @csrf
     <div class="form-group">
         <label for="new_name" class="font-weight-bold">Name</label>
-        <input type="text" class="form-control" id="new_name" name="new_name" placeholder="Name..." value="{{ old('new_name') }}>
+        <input type="text" class="form-control" id="new_name" name="new_name" placeholder="Name..." value="{{ old('new_name') }}">
     </div>
     <div class="form-group">
         <label for="new_description" class="font-weight-bold">Description</label>
@@ -25,7 +25,7 @@
 
         <li>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="bookmark_check_{{ $b->id }}" id="bookmark_check_{{ $b->id }}" {{ old('bookmark_check_' . $b->id) ? 'checked' : '' }>
+              <input class="form-check-input" type="checkbox" name="bookmark_check_{{ $b->id }}" id="bookmark_check_{{ $b->id }}">
               <label class="form-check-label" for="bookmark_check_{{ $b->id }}">{{ $b->name ? $b->name : $b->url }}</label>
             </div>
         </li>

@@ -17,8 +17,8 @@
     @csrf
     @method('PUT')
     <div class="form-group">
-        <label for="new_name" class="font-weight-bold">Bookmark Alias</label>
-        <input type="text" class="form-control" id="new_name" name="new_name" value="{{ $c->name }}" placeholder="Bookmark alias...">
+        <label for="new_name" class="font-weight-bold">Name</label>
+        <input type="text" class="form-control" id="new_name" name="new_name" value="{{ $c->name }}" placeholder="Catalogue name...">
     </div>
     <div class="form-group">
         <label for="new_description" class="font-weight-bold">Description</label>
